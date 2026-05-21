@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "8. Volcanic Hazard Vectors (Primary Global Lethality Drivers)",
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "data/agent_deaths.csv"
+  },
+  "mark": {
+    "type": "arc",
+    "innerRadius": 60
+  },
+  "encoding": {
+    "theta": {
+      "field": "Total_Deaths",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Agent_Name",
+      "type": "nominal",
+      "title": "Hazard Agent Type"
+    }
+  }
+}

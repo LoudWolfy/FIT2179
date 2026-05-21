@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "14. Northern Risk Vector: The Aviation Ash Dispersion Perimeter Map",
+  "width": 800,
+  "height": 450,
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson",
+        "format": {
+          "type": "json"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e0e0e0",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "data/PB2002_boundaries.json",
+        "format": {
+          "type": "json"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "filled": false,
+        "stroke": "#e65c00",
+        "strokeWidth": 2,
+        "strokeDash": [
+          6,
+          4
+        ],
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "encoding": {}
+    },
+    {
+      "data": {
+        "url": "data/vols_processed.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.Longitude > 95 && datum.Longitude < 165 && datum.Latitude > -48 && datum.Latitude < 12"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.25,
+        "color": "#d73027"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "value": 380
+        },
+        "tooltip": [
+          {
+            "field": "Volcano.Name"
+          },
+          {
+            "field": "Country"
+          }
+        ]
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "scale": 500,
+    "center": [
+      128,
+      -10
+    ]
+  }
+}

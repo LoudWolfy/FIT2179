@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "6. Density Grid Intensity Spectrum of Event Eruptions by Century",
+  "width": 800,
+  "height": 250,
+  "data": {
+    "url": "data/events_processed.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Year > 1500"
+    },
+    {
+      "calculate": "floor(datum.Year / 100) * 100",
+      "as": "Century"
+    }
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "Century",
+      "type": "ordinal",
+      "title": "Century Base"
+    },
+    "y": {
+      "field": "VEI",
+      "type": "ordinal",
+      "title": "VEI Power Scale"
+    },
+    "color": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "scale": {
+        "scheme": "purples"
+      }
+    }
+  }
+}

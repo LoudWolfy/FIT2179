@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": { "spacing": 40 },
+    "view": { "stroke": null }
+  },
+  "title": "7. Event Magnitude vs. Total Death Toll Human Cost Matrix",
+  "width": 800,
+  "height": 350,
+  "data": {
+    "url": "data/events_processed.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.VEI != null && datum.Total_Deaths > 0"
+    },
+    {
+      "calculate": "random()",
+      "as": "jitter"
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.7,
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "x": {
+      "field": "VEI",
+      "type": "ordinal",
+      "title": "Volcano Explosivity Index (VEI)"
+    },
+    "xOffset": {
+      "field": "jitter",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "Total_Deaths",
+      "type": "quantitative",
+      "scale": { "type": "log" },
+      "title": "Total Fatalities (Log Scale)"
+    },
+    "size": {
+      "field": "Total_Deaths",
+      "type": "quantitative",
+      "title": "Fatality Scale",
+      "legend": null
+    },
+    "color": {
+      "field": "Type",
+      "type": "nominal",
+      "title": "Volcano Type"
+    },
+    "tooltip": [
+      { "field": "Name", "title": "Volcano Name" },
+      { "field": "Year", "title": "Year of Event" },
+      { "field": "VEI", "title": "VEI Magnitude" },
+      { "field": "Total_Deaths", "title": "Fatalities", "format": "," }
+    ]
+  }
+}

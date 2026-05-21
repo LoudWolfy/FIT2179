@@ -1,0 +1,48 @@
+---
+title: "files innit"
+author: "Panshul Kale"
+date: "2026-05-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+## files
+
+```{r echo= FALSE}
+holo <- read_xlsx("data/holocene.xlsx")
+holo <- holo |> row_to_names(row_number= 1)
+
+plei <- read_xlsx("data/phleistocene.xlsx")
+plei <- plei |> row_to_names(row_number= 1)
+
+erupt <- read_xlsx("data/holo_erupt.xlsx")
+erupt <- erupt |> row_to_names(row_number= 1)
+
+vols <- read.delim("data/volcanoes.tsv")
+eve <- read.delim("data/events.tsv")
+
+vols <- vols[-c(1), -c(1)]
+eve <- eve[-c(1), -c(1)]
+
+vols <- vols[ , -c(1, 3, 5, 6, 7)]
+
+names(vols)[1] <- "Volcano Name"
+
+
+full_cene <- full_join(plei, holo)
+
+new_vols <- left_join(full_cene, vols, by= "Volcano Name")
+
+write.csv(new_vols, "vols.csv", row.names= FALSE)
+write.csv(plei, "phleistocene.csv", row.names= FALSE)
+write.csv(holo, "holocene.csv", row.names= FALSE)
+write.csv(eve, "events.csv", row.names= FALSE)
+write.csv(erupt, "eruptions.csv", row.names= FALSE)
+
+```

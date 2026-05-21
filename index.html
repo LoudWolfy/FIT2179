@@ -1,14 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-<div style="color: red;">
-    <head>
-        <title>Document Title</title>
-    </head>
-    <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Ring of Fire: Volcanic Risk & Human Impact</title>
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+  
+  <style>
+    /* Section Divider Line for a continuous scrolling dashboard narrative */
+    .narrative-chapter {
+      margin-bottom: 80px;
+      padding-bottom: 40px;
+      border-bottom: 2px dashed #cbd5e1;
+    }
+    .narrative-chapter:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
 
-        <h1>Heading 1</h1>
-        <p>This is a paragraph</p>
+  <header class="main-dashboard-header">
+    <h1 class="main-title">The Ring of Fire</h1>
+    <p class="main-subtitle">A Visual Exploration of Volcanic Systems, Global Risk Profiles, and the Geomorphic Threat to Australia</p>
+    <div class="title-divider"></div>
+  </header>
 
-    </body>
-</div>
+  <div class="container">
+
+    <section class="narrative-chapter">
+      <header>
+        <span class="chapter-tag">Chapter 1</span>
+        <h1>Where They Are</h1>
+        <p class="chapter-lead">
+          Volcanoes are not distributed at random; they follow the rigid boundaries of moving tectonic plates. 
+          Below, explore how the deep geological architecture of the planet shapes our active surface features.
+        </p>
+      </header>
+
+      <div class="showcase-row">
+        <div class="dashboard-card map-card">
+          <div id="chart1" class="chart-container"></div>
+        </div>
+      </div>
+
+      <div class="split-grid">
+        <div class="narrative-block">
+          <div class="dashboard-card"><div id="chart2" class="chart-container"></div></div>
+          <div class="dashboard-card"><div id="chart3" class="chart-container"></div></div>
+        </div>
+        <div class="narrative-block">
+          <div class="dashboard-card narrative-card">
+            <h3>Mapping Prehistoric vs Active Eras</h3>
+            <p>In the map above, it can be seen that the phleistocene volcanoes are not sitting on tectonic plates, this is because these are were the tectonic plates used to be. Whereas the holocene
+                volcanoes are sitting on the tectonic plates, that is why they are considered active.
+            </p>
+          </div>
+          <div class="dashboard-card narrative-card">
+            <h3>Geomorphic Typing & Boundary Engines</h3>
+            <p>Subduction Zone Volcanoes are those that form on the borders of tectonic plates, Intraplate volcanoes are those that are formed within the tectonic plate
+                Clearly the Subduction Zone volcanoes are far more common which makes sense as we know that volcanoes are usually formed on the borders of tectonic plates
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="narrative-chapter">
+      <header>
+        <span class="chapter-tag">Chapter 2</span>
+        <h1>The Eruption Record: History & Magnitude</h1>
+        <p class="chapter-lead">
+          How do we measure the anger of a volcano? By exploring historical baselines, we can quantify 
+          the scale of historic eruptions and track the evolution of human data records over time.
+        </p>
+      </header>
+
+      <div class="showcase-row">
+        <div class="dashboard-card">
+          <div id="chart4" class="chart-container"></div>
+        </div>
+      </div>
+
+      <div class="split-grid">
+        <div class="narrative-block">
+          <div class="dashboard-card"><div id="chart5" class="chart-container"></div></div>
+          <div class="dashboard-card"><div id="chart6" class="chart-container"></div></div>
+        </div>
+        <div class="narrative-block">
+          <div class="dashboard-card narrative-card">
+            <h3>The Frequency of Power</h3>
+            <p>The Volcanic Explosivity Index (VEI) operates exponentially. Small eruptions occur around the globe daily, but high-magnitude 'super-eruptions' (VEI 7+) remain exceptionally rare anomalies.</p>
+          </div>
+          <div class="dashboard-card narrative-card">
+            <h3>The Reporting Bias Phenomenon</h3>
+            <p>An initial look at history implies the planet is becoming more unstable, but the data curve actually maps the rise of communication infrastructure, satellite tracking, and global monitoring coordination.
+                However in the heatmap we can see that most of the records are coming from the 20th century. Which is interesting and we may see a plateau in the exponential rise of volcano eruption records.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="narrative-chapter">
+      <header>
+        <span class="chapter-tag">Chapter 3</span>
+        <h1>Human Impact: The True Cost of Danger</h1>
+        <p class="chapter-lead">
+          The threat of a volcano is not merely a function of its physical size. True risk occurs at the 
+          intersection of geological power and human population density.
+        </p>
+      </header>
+
+      <div class="showcase-row">
+        <div class="dashboard-card">
+          <div id="chart7" class="chart-container"></div>
+        </div>
+      </div>
+
+      <div class="split-grid">
+        <div class="narrative-block">
+          <div class="dashboard-card"><div id="chart8" class="chart-container"></div></div>
+          <div class="dashboard-card"><div id="chart9" class="chart-container"></div></div>
+        </div>
+        <div class="narrative-block">
+          <div class="dashboard-card narrative-card">
+            <h3>Decoupling Magnitude from Mortality</h3>
+            <p>
+              The scatter matrix above separates historical events by their explicit <strong>Volcano Explosivity Index (VEI)</strong> steps. 
+              Because death tolls vary from single digits into tens of thousands, a <em>Logarithmic Scale</em> is used on the vertical axis to compress values cleanly.
+            </p>
+          </div>
+          <div class="dashboard-card narrative-card">
+            <h3>The Core Lethality Drivers</h3>
+            <p>
+              Most deaths come from unknown causes as can be seen by the donut chart, but when ignoring the unknown/other causes,
+              It can be seen that most deaths are being caused by Mudflow and Pyroclastic flow. This makes sense as most people will get buried or burned by them and they are very hard to outrun
+            </p>
+          </div>
+          <div class="dashboard-card narrative-card">
+            <h3>Historical Hazards in Transition</h3>
+            <p>
+              The slope metrics show how modern infrastructure and early warning systems have shifted casualty profiles. 
+              As we transition from the 19th to the 20th century, the frequency of massive catastrophe incidents drops across several main hazard domains due to improved tracking grids and planned local evacuation corridors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="narrative-chapter">
+      <header>
+        <span class="chapter-tag">Chapter 4</span>
+        <h1>Regional Dynamics: Pulsing Zones</h1>
+        <p class="chapter-lead">
+          Volcanic behavior varies wildly by geographic location. By tracking individual lifecycles, 
+          we can see how different regional zones compete for dominance.
+        </p>
+      </header>
+
+      <div class="showcase-row">
+        <div class="dashboard-card">
+          <div id="chart10" class="chart-container"></div>
+        </div>
+      </div>
+
+      <div class="split-grid">
+        <div class="narrative-block">
+          <div class="dashboard-card"><div id="chart11" class="chart-container"></div></div>
+        </div>
+        <div class="narrative-block">
+          <div class="dashboard-card narrative-card">
+            <h3>Geographic Power Rankings</h3>
+            <p>Over centuries, the distribution of active clusters shifts. Witness how specific zones rise and fall in structural frequency, highlighting changing subterranean pressure cycles.</p>
+          </div>
+          <div class="dashboard-card narrative-card">
+            <h3>The Variable Longevity of Systems</h3>
+            <p>Some volcanic chambers release energy in quick, isolated structural pulses. Others remain caught in open eruptive cycles that continuously exhaust debris over multiple decades.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="narrative-chapter">
+      <header>
+        <span class="chapter-tag">Chapter 5</span>
+        <h1>The Australian Perspective: A Continent on Edge</h1>
+        <p class="chapter-lead">
+          As can be seen here, Australia does not have many Volcanoes around it. 
+          This is due to the fact that it sits on its own tectonic plate
+        </p>
+      </header>
+
+      <div class="showcase-row">
+        <div class="dashboard-card map-card">
+          <div id="chart14" class="chart-container"></div>
+        </div>
+      </div>
+
+      <div class="split-grid">
+        <div class="narrative-block">
+          <div class="dashboard-card"><div id="chart12" class="chart-container"></div></div>
+          <div class="dashboard-card"><div id="chart13" class="chart-container"></div></div>
+        </div>
+        <div class="narrative-block">
+          <div class="dashboard-card narrative-card">
+            <h3>The Risk Next Door</h3>
+            <p>Our maritime neighbors—Indonesia, Papua New Guinea, and New Zealand—maintain some of the highest-density concentrations of explosive stratovolcanoes on Earth.</p>
+          </div>
+          <div class="dashboard-card narrative-card">
+            <h3>The Ash Infrastructure Threat</h3>
+            <p>Australia’s primary threat isn't liquid lava; it is airborne ash infrastructure collapse. High-altitude injection of fine silica plume particles into regional jetstreams from a major northern eruption can instantly paralyze our national airspace and supply lines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const opt = {"actions": false};
+
+    // Chapter 1
+    vegaEmbed('#chart1', 'chart_01.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart2', 'chart_02.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart3', 'chart_03.vg.json', opt).catch(console.error);
+
+    // Chapter 2
+    vegaEmbed('#chart4', 'chart_04.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart5', 'chart_05.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart6', 'chart_06.vg.json', opt).catch(console.error);
+
+    // Chapter 3
+    vegaEmbed('#chart7', 'chart_07.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart8', 'chart_08.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart9', 'chart_09.vg.json', opt).catch(console.error);
+
+    // Chapter 4
+    vegaEmbed('#chart10', 'chart_10.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart11', 'chart_11.vg.json', opt).catch(console.error);
+
+    // Chapter 5
+    vegaEmbed('#chart12', 'chart_12.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart13', 'chart_13.vg.json', opt).catch(console.error);
+    vegaEmbed('#chart14', 'chart_14.vg.json', opt).catch(console.error);
+  </script>
+
+</body>
 </html>

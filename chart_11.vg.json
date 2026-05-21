@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "11. Historical Eruption Lifecycle Lifespan Runtimes",
+  "width": 800,
+  "height": 300,
+  "data": {
+    "url": "data/eruptions.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum['End Year'] != 'NULL' && datum['End Year'] != null && datum['Start Year'] != 'NULL' && datum['Start Year'] != null"
+    },
+    {
+      "calculate": "toNumber(datum['End Year']) - toNumber(datum['Start Year'])",
+      "as": "DurationYears"
+    },
+    {
+      "filter": "datum.DurationYears > 0"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "DurationYears",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rank <= 30"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Volcano Name",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Volcano"
+    },
+    "x": {
+      "field": "DurationYears",
+      "type": "quantitative",
+      "title": "Duration (Years)"
+    }
+  }
+}
