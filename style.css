@@ -165,7 +165,6 @@ h1 {
   line-height: 1.5;
 }
 
-/* Simple Centered Border Separator Line */
 .title-divider {
   width: 120px;
   height: 3px;
@@ -177,7 +176,6 @@ h1 {
 @media (min-width: 1024px) {
   .triple-grid {
     display: grid;
-    /* Divides the space into 3 equal columns side-by-side */
     grid-template-columns: 1fr 1fr 1fr; 
     gap: 20px;
     align-items: stretch;
@@ -203,20 +201,4 @@ h1 {
     line-height: 1.4 !important;
     margin-bottom: 0 !important;
   }
-}
-
-.right-stack-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;              /* Consistent spacing between the two right cards */
-  height: 100%;           /* Tells the column to match the left column's exact height */
-  justify-content: space-between;
-}
-
-/* Ensures both sub-cards share the available vertical space perfectly */
-.dynamic-subcard {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
