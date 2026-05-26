@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "10. Top Active Regions Ranking Dynamic Progression Over Time",
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "data/bump_chart_data.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum['Region'] != null && datum['Region'] != ''"
+    },
+    {
+      "calculate": "toNumber(datum.Rank)",
+      "as": "RankNum"
+    },
+    {
+      "calculate": "toNumber(datum.Century)",
+      "as": "CenturyNum"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "CenturyNum",
+          "type": "ordinal",
+          "title": "Century"
+        },
+        "y": {
+          "field": "RankNum",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true,
+            "domain": [
+              1,
+              12
+            ]
+          },
+          "title": "Rank (1 = most active)"
+        },
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "title": "Volcanic Region"
+        },
+        "opacity": {
+          "condition": {
+            "param": "bumpSelect",
+            "value": 1
+          },
+          "value": 0.1
+        }
+      },
+      "params": [
+        {
+          "name": "bumpSelect",
+          "select": {
+            "type": "point",
+            "fields": [
+              "Region"
+            ]
+          },
+          "bind": "legend"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 80
+      },
+      "encoding": {
+        "x": {
+          "field": "CenturyNum",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "RankNum",
+          "type": "quantitative",
+          "scale": {
+            "reverse": true
+          }
+        },
+        "color": {
+          "field": "Region",
+          "type": "nominal"
+        },
+        "opacity": {
+          "condition": {
+            "param": "bumpSelect",
+            "value": 1
+          },
+          "value": 0.1
+        },
+        "tooltip": [
+          {
+            "field": "Region",
+            "title": "Region"
+          },
+          {
+            "field": "CenturyNum",
+            "title": "Century"
+          },
+          {
+            "field": "RankNum",
+            "title": "Rank"
+          },
+          {
+            "field": "Eruption_Count",
+            "title": "Eruptions"
+          }
+        ]
+      }
+    }
+  ]
+}

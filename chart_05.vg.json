@@ -1,0 +1,38 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "5. Human Observation Reporting Bias Growth Curves (Since 1500)",
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "data/reporting_bias.csv"
+  },
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          1500,
+          2024
+        ]
+      }
+    },
+    "y": {
+      "field": "Cumulative_Eruptions",
+      "type": "quantitative",
+      "title": "Cumulative Eruption Database Records"
+    },
+    "color": {
+      "value": "#6a51a3"
+    }
+  }
+}

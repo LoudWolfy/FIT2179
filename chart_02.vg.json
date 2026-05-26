@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 40
+    },
+    "view": {
+      "stroke": null
+    }
+  },
+  "title": "2. Volcano Geomorphic Type by Tectonic Boundary Environment",
+  "width": "container",
+  "height": 250,
+  "data": {
+    "url": "data/vols_processed.csv"
+  },
+  "params": [
+    {
+      "name": "typeClick",
+      "select": {
+        "type": "point",
+        "fields": [
+          "Primary.Volcano.Type"
+        ]
+      },
+      "bind": "legend"
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.Tectonic_Summary != 'NA' && datum.Tectonic_Summary != null && datum.Tectonic_Summary != ''"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Tectonic_Summary",
+      "type": "nominal",
+      "title": "Tectonic Summary",
+      "sort": "-y"
+    },
+    "y": {
+      "aggregate": "count",
+      "title": "Number of Formations"
+    },
+    "opacity": {
+      "condition": {
+        "param": "typeClick",
+        "value": 1
+      },
+      "value": 0.2
+    },
+    "tooltip": [
+      {
+        "field": "Tectonic_Summary",
+        "title": "Tectonic Setting"
+      },
+      {
+        "field": "Primary.Volcano.Type",
+        "title": "Volcano Type"
+      },
+      {
+        "aggregate": "count",
+        "title": "Count"
+      }
+    ]
+  }
+}
